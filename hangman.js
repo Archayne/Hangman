@@ -7,6 +7,7 @@ let newGame = function(){
     //Pick a random word
     let randomIndex = parseInt(Math.random()*POSSIBLE_WORDS.length);
     word = POSSIBLE_WORDS[randomIndex];
+    guesses = "";
     updatePage();
 }
 
