@@ -33,6 +33,7 @@ let updatePage = function(){
 let guessLetter = function(){
     let input = document.getElementById("guess");
     let letter = input.value;
+    letter = letter.toLowerCase();
     guesses +=letter
     updatePage();
 }
