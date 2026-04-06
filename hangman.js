@@ -3,7 +3,7 @@ const POSSIBLE_WORDS = ["obdurate", "verisimilitude",
 var word = "";
 var guesses = "";//this will be all the guesses
 var guessCount;
-        const MAX_GUESSES = 6;
+const MAX_GUESSES = 6;
 
 let newGame = function(){
     //Pick a random word
@@ -25,12 +25,19 @@ let updatePage = function(){
         }
         
     }
+    
 
     let clue = document.getElementById("clue");
     clue.textContent = clueString;
 
     let guessArea = document.getElementById("guesses");
-    guessArea.textContent = "Guesses: " + guesses;
+
+    if (guessCount === 0){
+        guessArea.textContent = "Game Over!"
+    }else{
+        guessArea.textContent = "Guesses: " + guesses;
+    }
+    
 
     let image = document.getElementById("hangmanpic");
     image.src = `images/hangman${guessCount}.gif`;
