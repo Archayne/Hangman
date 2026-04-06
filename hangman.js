@@ -4,6 +4,7 @@ var word = "";
 var guesses = "";//this will be all the guesses
 var guessCount;
 const MAX_GUESSES = 6;
+var endGame = false;
 
 let newGame = function(){
     //Pick a random word
@@ -11,6 +12,7 @@ let newGame = function(){
     let randomIndex = parseInt(Math.random()*POSSIBLE_WORDS.length);
     word = POSSIBLE_WORDS[randomIndex];
     guesses = "";
+    endGame = false;
     updatePage();
 }
 
@@ -25,7 +27,6 @@ let updatePage = function(){
         }
         
     }
-    
 
     let clue = document.getElementById("clue");
     clue.textContent = clueString;
@@ -33,17 +34,22 @@ let updatePage = function(){
     let guessArea = document.getElementById("guesses");
     if (guessCount === 0){
         guessArea.textContent = "Game Over!"
+        endGame = true;
     }else{
         guessArea.textContent = "Guesses: " + guesses;
     }
-    
+    if (clue.textContent.split(" ").join("") === word){
+        guessArea.textContent = "You Win!"
+        endGame = true;
+    }
+
 
     let image = document.getElementById("hangmanpic");
     image.src = `images/hangman${guessCount}.gif`;
 }
 
 let guessLetter = function(){
-    if (word != "" && guessCount > 0){
+    if (word != "" && endGame != true){
         let input = document.getElementById("guess");
         let letter = input.value;
         letter = letter.toLowerCase();
