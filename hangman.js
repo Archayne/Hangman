@@ -6,30 +6,30 @@ var guessCount; // current number of guesses
 const MAX_GUESSES = 6; //max number of guesses 
 var endGame = false; //stop game from playing when completed (win or lose)
 
-let newGame = function(){
+let newGame = function(){//start a new game
     //Pick a random word
-    guessCount = MAX_GUESSES;
-    let randomIndex = parseInt(Math.random()*POSSIBLE_WORDS.length);
+    guessCount = MAX_GUESSES; //reset guess count to max
+    let randomIndex = parseInt(Math.random()*POSSIBLE_WORDS.length); //pick a random number
     word = POSSIBLE_WORDS[randomIndex]; // choose a random word from POSSIBLE_WORDS Array
-    guesses = "";
-    endGame = false;
+    guesses = ""; //empty the list of guessed letters
+    endGame = false; //make the game playable again
     updatePage();
 }
-//update page elements
-let updatePage = function(){
+
+let updatePage = function(){//update page elements with new values
     let clueString = ""; //where the letters and underscores will be when guessing
     for(let i = 0; i < word.length; i++){
         var currentLetter = word.charAt(i);
         if(guesses.indexOf(currentLetter) >= 0){
-            clueString += currentLetter + " "; //add the corectly guessed latter
+            clueString += currentLetter + " "; //add the corecrtly guessed letter
         }else{
             clueString += "_ "; //place underscores for unknown letters
         }
         
     }
 
-    let clue = document.getElementById("clue");
-    clue.textContent = clueString;
+    let clue = document.getElementById("clue");//the hidden word
+    clue.textContent = clueString;//update the hidden word with guessed letters
 
     let guessArea = document.getElementById("guesses");
     if (guessCount === 0){ // ran out of guesses
@@ -46,8 +46,8 @@ let updatePage = function(){
     let image = document.getElementById("hangmanpic");
     image.src = `images/hangman${guessCount}.gif`; //update hangman pic based on guess count
 }
-
-let guessLetter = function(){
+// guess a letter in the word and update page based on whether correct or incorrect
+let guessLetter = function(){//runs when Guess button is pressed
     if (word != "" && endGame != true){
         let input = document.getElementById("guess");
         let letter = input.value;
