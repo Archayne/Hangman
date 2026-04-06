@@ -3,7 +3,7 @@ const POSSIBLE_WORDS = ["obdurate", "verisimilitude",
 var word = "";
 var guesses = "";//this will be all the guesses
 var guessCount;
-const MAX_GUESSES = 6;
+        const MAX_GUESSES = 6;
 
 let newGame = function(){
     //Pick a random word
@@ -37,15 +37,17 @@ let updatePage = function(){
 }
 
 let guessLetter = function(){
-    let input = document.getElementById("guess");
-    let letter = input.value;
-    letter = letter.toLowerCase();
-    if(word.indexOf(letter) < 0){
-        guessCount--;
+    if (word != ""){
+        let input = document.getElementById("guess");
+        let letter = input.value;
+        letter = letter.toLowerCase();
+        if(word.indexOf(letter) < 0){
+            guessCount--;
+        }
+        guesses += letter;
+        input.value = ""; // Guess box is cleared after every guess
+        updatePage();
     }
-    guesses += letter;
-    input.value = ""; // Guess box is cleared after every guess
-    updatePage();
 }
 
 //2.put dashes = word length
