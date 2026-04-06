@@ -31,7 +31,6 @@ let updatePage = function(){
     clue.textContent = clueString;
 
     let guessArea = document.getElementById("guesses");
-
     if (guessCount === 0){
         guessArea.textContent = "Game Over!"
     }else{
@@ -44,7 +43,7 @@ let updatePage = function(){
 }
 
 let guessLetter = function(){
-    if (word != ""){
+    if (word != "" && guessCount > 0){
         let input = document.getElementById("guess");
         let letter = input.value;
         letter = letter.toLowerCase();
